@@ -82,6 +82,20 @@ export class TextureLoader extends AbstractService {
   }
 
   /**
+   * @summary Retrieves the cache for a panorama
+   * @param {string} panorama
+   * @returns {Blob | undefined}
+   * @throws {PSVError} when the cache is disabled
+  */
+  getPanoramaCache(panorama){
+    if (!THREE.Cache.enabled) {
+      throw new PSVError('Cannot query cache, cache is disabled');
+    }
+  
+    return THREE.Cache.get(panorama)
+  }
+
+  /**
    * @summary Loads a Blob with FileLoader
    * @param {string} url
    * @param {function(number)} [onProgress]
